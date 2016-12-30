@@ -1343,6 +1343,40 @@ $incomingPaymentParameterCreate = array(
     )
 );
 
+$incomingInboxDocumentParameterCreate = array(
+    'description' => 'Inbox Document',
+    'location' => 'json',
+    'type' => 'object',
+    'sentAs' => 'inbox-document',
+    'required' => true,
+    'properties' => array(
+        'filename' => array(
+            'description' => 'filename',
+            'type' => 'string',
+            'sentAs' => 'filename',
+            'required' => true,
+        ),
+        'mimetype' => array(
+            'description' => 'Mime type of the file',
+            'type' => 'string',
+            'sentAs' => 'mimetype',
+            'required' => true,
+        ),
+        'base64file'  => array(
+            'description' => 'base64 coded template file',
+            'type'        => 'string',
+            'sentAs'      => 'base64file',
+            'required'    => false
+        ),
+        'metadata' => array(
+            'description' => 'Metadata',
+            'type' => 'array',
+            'sentAs' => 'metadata',
+            'required' => false,
+        )
+    )
+);
+
 return array(
     'name'        => 'Billomat',
     'apiVersion'  => '1.0',
@@ -4127,6 +4161,16 @@ return array(
             'documentationUrl' => 'http://www.billomat.com/en/api/incoming/payments',
             'parameters'       => array(
                 'incoming-payment'  => $incomingPaymentParameterCreate
+            )
+        ),
+
+        'CreateIncomingInboxDocument' => array(
+            'httpMethod'       => 'POST',
+            'uri'              => '/api/inbox-documents',
+            'summary'          => 'Create an inbox document',
+            'documentationUrl' => 'http://www.billomat.com/en/api/incomings/inbox',
+            'parameters'       => array(
+                'inbox-document'  => $incomingInboxDocumentParameterCreate
             )
         ),
     ),
